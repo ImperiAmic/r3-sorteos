@@ -5,9 +5,10 @@
   "main": "dist",
   "type": "module",
   "scripts": {
-    "build": "tsc -w",
+    "build": "tsc",
     "start": "node .",
-    "clean-data": "rm data/data.json"
+    "clean-data": "rm data/data.json",
+    "watch": "tsc -w"
   },
   "keywords": [],
   "author": "",
