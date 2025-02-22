@@ -18,6 +18,7 @@ export const loginUser = (email: string, password: string): void => {
           programData.isAdmin = user.isAdmin;
         }
       });
+
       saveData();
       console.log("\n¡Te has logueado correctamente, bienvenido/a!");
     } else {
@@ -26,4 +27,16 @@ export const loginUser = (email: string, password: string): void => {
   } else {
     process.exit(9);
   }
+};
+
+export const createGiveaway = (): void => {
+  const askUser = askUserNewGiveawayData();
+
+  programData.giveaways.push({
+    name: askUser.giveawayName,
+    socialNetwork: askUser.giveawaySocialNetwork,
+    participants: [],
+  });
+
+  saveData();
 };

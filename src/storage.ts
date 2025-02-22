@@ -33,6 +33,18 @@ export let programData: ProgramData = {
       password: "marta1234",
       isAdmin: false,
     },
+    {
+      email: "admin",
+      name: "Admin",
+      password: "admin",
+      isAdmin: true,
+    },
+    {
+      email: "rai",
+      name: "Rai",
+      password: "rai",
+      isAdmin: false,
+    },
   ],
 };
 
