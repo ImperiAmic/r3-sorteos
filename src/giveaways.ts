@@ -44,12 +44,10 @@ export const createGiveaway = (): void => {
 export const listGiveaways = (): void => {
   const giveawaysCount = programData.giveaways.length;
 
-  if (programData.giveaways.length === 0) {
-    console.log(`
-Lo sentimos, aún no hay sorteos disponibles :(
-Por favor, contacta con el Administrador o inténtalo de nuevo más tarde.`);
+  if (giveawaysCount === 0) {
+    console.log(`\nNo hay sorteos disponibles.`);
   } else {
-    console.log(`Éstos son los ${giveawaysCount} sorteos disponibles:\n`);
+    console.log(`\nÉstos son los ${giveawaysCount} sorteos disponibles:\n`);
 
     programData.giveaways.forEach((giveaway, index) => {
       const giveawaysPosition = index + 1;
@@ -57,5 +55,18 @@ Por favor, contacta con el Administrador o inténtalo de nuevo más tarde.`);
         `${giveawaysPosition}. Sorteo de ${giveaway.name} en ${giveaway.socialNetwork}`
       );
     });
+  }
+};
+
+export const deleteGiveaway = (position: number): void => {
+  const giveawaysCount = programData.giveaways.length;
+  const giveawaysIndex = position - 1;
+
+  if (giveawaysCount <= giveawaysIndex) {
+    console.log(`\nEl sorteo seleccionado no existe.`);
+  } else {
+    programData.giveaways.splice(giveawaysIndex, 1);
+    console.log(`\nEl sorteo ${position} ha sido borrado.`);
+    saveData();
   }
 };
