@@ -40,3 +40,22 @@ export const createGiveaway = (): void => {
 
   saveData();
 };
+
+export const listGiveaways = (): void => {
+  const giveawaysCount = programData.giveaways.length;
+
+  if (programData.giveaways.length === 0) {
+    console.log(`
+Lo sentimos, aún no hay sorteos disponibles :(
+Por favor, contacta con el Administrador o inténtalo de nuevo más tarde.`);
+  } else {
+    console.log(`Éstos son los ${giveawaysCount} sorteos disponibles:\n`);
+
+    programData.giveaways.forEach((giveaway, index) => {
+      const giveawaysPosition = index + 1;
+      console.log(
+        `${giveawaysPosition}. Sorteo de ${giveaway.name} en ${giveaway.socialNetwork}`
+      );
+    });
+  }
+};
