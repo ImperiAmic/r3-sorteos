@@ -20,12 +20,12 @@ export const loginUser = (email: string, password: string): void => {
       });
 
       saveData();
-      console.log("\n¡Te has logueado correctamente, bienvenido/a!");
+      console.log(`\n¡Te has logueado correctamente, bienvenido/a!`);
     } else {
-      process.exit(9);
+      throw Error(`Error: contraseña incorrecta`);
     }
   } else {
-    process.exit(9);
+    throw Error(`Error: email y/o contraseña incorrectos`);
   }
 };
 
@@ -39,6 +39,7 @@ export const createGiveaway = (): void => {
   });
 
   saveData();
+  console.log(`\nSorteo registrado correctamente`);
 };
 
 export const listGiveaways = (): void => {
