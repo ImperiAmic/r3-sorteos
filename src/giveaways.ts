@@ -91,33 +91,32 @@ export const enterGiveaway = (position: number): void => {
 };
 
 export const listUserGiveaways = (): void => {
-  const loggedUserGiveaways: string[] = [];
+  let loggedUserGiveaways: Giveaway[] = [];
   const loggedUserEmail = programData.userEmail;
 
-  programData.giveaways.forEach((giveaway) => {
+  programData.giveaways.forEach((giveaway, index) => {
+    const giveawayPosition = index + 1;
+
     if (
       giveaway.participants.find(
         (participant) => participant.email === loggedUserEmail
       )
     ) {
-      loggedUserGiveaways.push(giveaway.name);
+      loggedUserGiveaways.push({
+        name: giveaway.name,
+        socialNetwork: giveaway.socialNetwork,
+        participants: [],
+      });
     }
   });
 
-  const loggedUserGiveawaysCount = loggedUserGiveaways.length;
   console.log(
-    `\nEstás inscrito en los siguientes ${loggedUserGiveawaysCount} sorteos:`
+    `\nEstás inscrito en los siguientes ${loggedUserGiveaways.length} sorteos:`
   );
-
-  programData.giveaways.forEach((giveaway, index) => {
-    if (
-      giveaway.participants.find(
-        (participant) => participant.email === loggedUserEmail
-      )
-    ) {
-      console.log(
-        `${index}. Sorteo de ${giveaway.name} en ${giveaway.socialNetwork}`
-      );
-    }
+  loggedUserGiveaways.forEach((giveaway, index) => {
+    const giveawayPosition = index + 1;
+    console.log(
+      `${giveawayPosition}.  Sorteo de ${giveaway.name} en ${giveaway.socialNetwork}`
+    );
   });
 };
