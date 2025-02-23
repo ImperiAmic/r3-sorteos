@@ -22,10 +22,12 @@ export const loginUser = (email: string, password: string): void => {
       saveData();
       console.log(`\n¡Te has logueado correctamente, bienvenido/a!`);
     } else {
-      throw Error(`Error: contraseña incorrecta`);
+      console.log(`\nError: contraseña inválida`);
+      process.exit();
     }
   } else {
-    throw Error(`Error: email y/o contraseña incorrectos`);
+    console.log(`\nError: usuario y/o contraseña inválidos`);
+    process.exit();
   }
 };
 
