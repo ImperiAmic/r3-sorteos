@@ -66,7 +66,26 @@ export const deleteGiveaway = (position: number): void => {
     console.log(`\nEl sorteo seleccionado no existe.`);
   } else {
     programData.giveaways.splice(giveawaysIndex, 1);
-    console.log(`\nEl sorteo ${position} ha sido borrado.`);
     saveData();
+    console.log(`\nEl sorteo ${position} ha sido borrado.`);
+  }
+};
+
+export const enterGiveaway = (position: number): void => {
+  const giveawaysCount = programData.giveaways.length;
+  const giveawaysIndex = position - 1;
+  const loggedUserEmail = programData.userEmail;
+  const loggedUser = programData.users.find(
+    (user) => user.email === loggedUserEmail
+  );
+
+  if (giveawaysCount <= giveawaysIndex) {
+    console.log(`\nEl sorteo seleccionado no existe.`);
+  } else if (loggedUser) {
+    programData.giveaways[giveawaysIndex].participants.push(loggedUser);
+    saveData();
+    console.log(
+      `\nHas sido inscrito al sorteo ${position}: ${programData.giveaways[giveawaysIndex].name} en ${programData.giveaways[giveawaysIndex].socialNetwork}`
+    );
   }
 };
