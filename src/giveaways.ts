@@ -89,3 +89,35 @@ export const enterGiveaway = (position: number): void => {
     );
   }
 };
+
+export const listUserGiveaways = (): void => {
+  const loggedUserGiveaways: string[] = [];
+  const loggedUserEmail = programData.userEmail;
+
+  programData.giveaways.forEach((giveaway) => {
+    if (
+      giveaway.participants.find(
+        (participant) => participant.email === loggedUserEmail
+      )
+    ) {
+      loggedUserGiveaways.push(giveaway.name);
+    }
+  });
+
+  const loggedUserGiveawaysCount = loggedUserGiveaways.length;
+  console.log(
+    `\nEstás inscrito en los siguientes ${loggedUserGiveawaysCount} sorteos:`
+  );
+
+  programData.giveaways.forEach((giveaway, index) => {
+    if (
+      giveaway.participants.find(
+        (participant) => participant.email === loggedUserEmail
+      )
+    ) {
+      console.log(
+        `${index}. Sorteo de ${giveaway.name} en ${giveaway.socialNetwork}`
+      );
+    }
+  });
+};
