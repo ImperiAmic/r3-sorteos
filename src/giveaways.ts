@@ -22,11 +22,11 @@ export const loginUser = (email: string, password: string): void => {
       saveData();
       console.log(`\n¡Te has logueado correctamente, bienvenido/a!`);
     } else {
-      console.log(`\nError: contraseña inválida`);
+      console.log(`\nError: contraseña inválida.`);
       process.exit();
     }
   } else {
-    console.log(`\nError: usuario y/o contraseña inválidos`);
+    console.log(`\nError: usuario y/o contraseña inválidos.`);
     process.exit();
   }
 };
@@ -41,7 +41,7 @@ export const createGiveaway = (): void => {
   });
 
   saveData();
-  console.log(`\nSorteo registrado correctamente`);
+  console.log(`\nSorteo registrado correctamente.`);
 };
 
 export const listGiveaways = (): void => {
@@ -98,8 +98,6 @@ export const listUserGiveaways = (): void => {
   const loggedUserEmail = programData.userEmail;
 
   programData.giveaways.forEach((giveaway, index) => {
-    const giveawayPosition = index + 1;
-
     if (
       giveaway.participants.find(
         (participant) => participant.email === loggedUserEmail
@@ -113,13 +111,17 @@ export const listUserGiveaways = (): void => {
     }
   });
 
-  console.log(
-    `\nEstás inscrito en los siguientes ${loggedUserGiveaways.length} sorteos:`
-  );
-  loggedUserGiveaways.forEach((giveaway, index) => {
-    const giveawayPosition = index + 1;
+  if (loggedUserGiveaways.length < 1) {
+    console.log("\nNo estás suscrito a ningún sorteo.");
+  } else {
     console.log(
-      `${giveawayPosition}.  Sorteo de ${giveaway.name} en ${giveaway.socialNetwork}`
+      `\nEstás inscrito en los siguientes ${loggedUserGiveaways.length} sorteos:`
     );
-  });
+    loggedUserGiveaways.forEach((giveaway, index) => {
+      const giveawayPosition = index + 1;
+      console.log(
+        `${giveawayPosition}.  Sorteo de ${giveaway.name} en ${giveaway.socialNetwork}`
+      );
+    });
+  }
 };
