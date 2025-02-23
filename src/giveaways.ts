@@ -20,13 +20,13 @@ export const loginUser = (email: string, password: string): void => {
       });
 
       saveData();
-      console.log(`\n¡Te has logueado correctamente, bienvenido/a!`);
+      console.log("\n¡Te has logueado correctamente, bienvenido/a!");
     } else {
-      console.log(`\nError: contraseña inválida.`);
+      console.log("\nError: contraseña inválida.");
       process.exit();
     }
   } else {
-    console.log(`\nError: usuario y/o contraseña inválidos.`);
+    console.log("\nError: usuario y/o contraseña inválidos.");
     process.exit();
   }
 };
@@ -41,14 +41,14 @@ export const createGiveaway = (): void => {
   });
 
   saveData();
-  console.log(`\nSorteo registrado correctamente.`);
+  console.log("\nSorteo registrado correctamente.");
 };
 
 export const listGiveaways = (): void => {
   const giveawaysCount = programData.giveaways.length;
 
   if (giveawaysCount === 0) {
-    console.log(`\nNo hay sorteos disponibles.`);
+    console.log("\nNo hay sorteos disponibles.");
   } else {
     console.log(`\nÉstos son los ${giveawaysCount} sorteos disponibles:\n`);
 
@@ -66,7 +66,7 @@ export const deleteGiveaway = (position: number): void => {
   const giveawaysIndex = position - 1;
 
   if (giveawaysCount <= giveawaysIndex) {
-    console.log(`\nEl sorteo seleccionado no existe.`);
+    console.log("\nEl sorteo seleccionado no existe.");
   } else {
     programData.giveaways.splice(giveawaysIndex, 1);
     saveData();
@@ -83,7 +83,7 @@ export const enterGiveaway = (position: number): void => {
   );
 
   if (giveawaysCount <= giveawaysIndex) {
-    console.log(`\nEl sorteo seleccionado no existe.`);
+    console.log("\nEl sorteo seleccionado no existe.");
   } else if (loggedUser) {
     programData.giveaways[giveawaysIndex].participants.push(loggedUser);
     saveData();
